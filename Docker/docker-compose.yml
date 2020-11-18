@@ -1,0 +1,15 @@
+version: '3'
+
+services: 
+    db:
+        image: "postgres"
+        environment:
+            POSTGRES_PASSWORD: restaurant
+            POSTGRES_USER: admin
+            POSTGRES_DB: restaurant-db
+        volumes:
+            - database-data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+volumes:
+    database-data:
