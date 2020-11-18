@@ -19,8 +19,7 @@ public class MealMealService implements IMainMealService {
 
     @Override
     public List<MainMeal> getAllMainMeals() {
-        List<MainMeal> list = mainMealRepository.findAll();
-        return list;
+        return mainMealRepository.findAll();
     }
 
     @Override
@@ -29,8 +28,13 @@ public class MealMealService implements IMainMealService {
     }
 
     @Override
-    public void saveNewMeal(MainMeal newMeal) {
+    public void saveMeal(MainMeal newMeal) {
         mainMealRepository.save(newMeal);
+    }
+
+    @Override
+    public void deleteMeal(long id) {
+        mainMealRepository.deleteMeal(id);
     }
 
 

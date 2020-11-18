@@ -1,8 +1,7 @@
 package sk.havkymnauky.restaurant.api;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sk.havkymnauky.restaurant.api.dto.MainMealDTO;
 import sk.havkymnauky.restaurant.api.dto.MenuDTO;
 import sk.havkymnauky.restaurant.api.dto.SoupDTO;
@@ -37,6 +36,21 @@ public class Controller {
         return mainMealService.getAllMainMeals().stream()
                 .map(meal -> modelMapper.map(meal, MainMealDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/getMeal{id}")
+    public MainMealDTO getMeal(@PathVariable("id") long id) {
+        return modelMapper.map(mainMealService.getMealByID(id), MainMealDTO.class);
+    }
+
+    @PostMapping("/saveMeal")
+    public void saveMeal(@RequestBody MainMealDTO meal) {
+        mainMealService.saveMeal(modelMapper.map(meal, MainMeal.class));
+    }
+
+    @PostMapping("/deleteMeal{id}")
+    public void deleteMeal(@PathVariable("id") long id) {
+        mainMealService.deleteMeal(id);
     }
 
     @GetMapping("/soupTest")

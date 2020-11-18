@@ -22,6 +22,12 @@ public class MainMeal {
         this.mealPrice = mealPrice;
     }
 
+    public MainMeal(long mealID, String mealName, double mealPrice) {
+        this.mealID = mealID;
+        this.mealName = mealName;
+        this.mealPrice = mealPrice;
+    }
+
     public MainMeal() {
     }
 

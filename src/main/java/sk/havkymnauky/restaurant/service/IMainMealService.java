@@ -8,5 +8,6 @@ public interface IMainMealService {
 
     List<MainMeal> getAllMainMeals();
     MainMeal getMealByID(long id);
-    void saveNewMeal(MainMeal newMeal);
+    void saveMeal(MainMeal newMeal);
+    void deleteMeal(long id);
 }
