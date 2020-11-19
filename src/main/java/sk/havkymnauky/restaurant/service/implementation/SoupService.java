@@ -24,16 +24,17 @@ public class SoupService implements ISoupService {
 
     @Override
     public Soup getSoupByID(long id) {
-        return soupRepository.findById(id).orElse(null);
+        return soupRepository.findById(id);
     }
 
     @Override
-    public Soup saveNewSoup(Soup newSoup) {
-        return soupRepository.save(newSoup);
+    public void saveNewSoup(Soup newSoup) {
+        soupRepository.save(newSoup);
     }
 
     @Override
-    public void deleteAllSoups() {
-        soupRepository.deleteAll();
+    public void deleteSoup(long id) {
+        soupRepository.deleteSoup(id);
     }
+
 }

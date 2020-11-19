@@ -28,7 +28,7 @@ public class JDBCMainMealRepo implements IMainMealRepository {
 
     @Override
     public MainMeal findById(long id) {
-        String sql = "select * from " + DBProperties.MAIN_MEAL + " where " + DBProperties.MAIN_MEAL_ID + "=?";
+        String sql = String.format("select * from %s where %s=?", DBProperties.MAIN_MEAL, DBProperties.MAIN_MEAL_ID);
         List<MainMeal> meal = jdbcTemplate.query(sql, mainMealMapper, new Object[] { id });
         return meal.get(0);
     }
@@ -36,11 +36,11 @@ public class JDBCMainMealRepo implements IMainMealRepository {
     @Override
     public void save(MainMeal mainMeal) {
         if (mainMeal != null) {
-            if (mainMeal.getMealID() != 0) {
+            if (mainMeal.getId() != 0) {
                 updateMeal(mainMeal);
             } else {
                 String sql = String.format("insert into %s(%s, %s) values(?,?)", DBProperties.MAIN_MEAL, DBProperties.MAIN_MEAL_NAME, DBProperties.MAIN_MEAL_PRICE);
-                jdbcTemplate.update(sql, new Object[] { mainMeal.getMealName(), mainMeal.getMealPrice() });
+                jdbcTemplate.update(sql, new Object[] { mainMeal.getName(), mainMeal.getPrice() });
             }
         }
     }
@@ -53,6 +53,6 @@ public class JDBCMainMealRepo implements IMainMealRepository {
 
     private void updateMeal(MainMeal meal) {
         String sql = String.format("update %s set %s=?, %s=? where %s=?", DBProperties.MAIN_MEAL, DBProperties.MAIN_MEAL_NAME, DBProperties.MAIN_MEAL_PRICE, DBProperties.MAIN_MEAL_ID);
-        jdbcTemplate.update(sql, new Object[] { meal.getMealName(), meal.getMealPrice(), meal.getMealID()});
+        jdbcTemplate.update(sql, new Object[] { meal.getName(), meal.getPrice(), meal.getId()});
     }
 }

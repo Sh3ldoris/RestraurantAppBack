@@ -41,6 +41,12 @@ public class Soup {
         this.soupPrice = soupPrice;
     }
 
+    public Soup(long id, String soupName, double soupPrice) {
+        this.soupID = id;
+        this.soupName = soupName;
+        this.soupPrice = soupPrice;
+    }
+
     public Soup() {
     }
 
