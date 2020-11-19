@@ -11,7 +11,7 @@ import sk.havkymnauky.restaurant.repository.mapper.MainMealMapper;
 
 import java.util.List;
 
-@Repository("JDBCPostgresqlRepo")
+@Repository("JDBCPostgresqlMainMealRepo")
 public class JDBCMainMealRepo implements IMainMealRepository {
 
     @Autowired

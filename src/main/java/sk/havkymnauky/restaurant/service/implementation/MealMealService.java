@@ -13,7 +13,7 @@ import java.util.List;
 public class MealMealService implements IMainMealService {
 
     @Autowired
-    @Qualifier("JDBCPostgresqlRepo")
+    @Qualifier("JDBCPostgresqlMainMealRepo")
     private IMainMealRepository mainMealRepository;
 
 

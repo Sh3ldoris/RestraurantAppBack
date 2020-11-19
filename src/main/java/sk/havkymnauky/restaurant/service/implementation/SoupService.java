@@ -1,5 +1,7 @@
 package sk.havkymnauky.restaurant.service.implementation;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import sk.havkymnauky.restaurant.model.Soup;
 import sk.havkymnauky.restaurant.repository.IMainMealRepository;
@@ -11,11 +13,9 @@ import java.util.List;
 @Service
 public class SoupService implements ISoupService {
 
+    @Autowired
+    @Qualifier("JDBCPostgresqlSoupRepo")
     private ISoupRepository soupRepository;
-
-    public SoupService(ISoupRepository soupRepository) {
-        this.soupRepository = soupRepository;
-    }
 
     @Override
     public List<Soup> getAllSoups() {

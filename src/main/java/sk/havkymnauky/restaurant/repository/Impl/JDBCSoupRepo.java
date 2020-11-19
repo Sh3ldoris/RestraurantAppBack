@@ -11,7 +11,7 @@ import sk.havkymnauky.restaurant.repository.mapper.SoupMapper;
 
 import java.util.List;
 
-@Repository("JDBCPostgresqlRepo")
+@Repository("JDBCPostgresqlSoupRepo")
 public class JDBCSoupRepo implements ISoupRepository {
 
     @Autowired
