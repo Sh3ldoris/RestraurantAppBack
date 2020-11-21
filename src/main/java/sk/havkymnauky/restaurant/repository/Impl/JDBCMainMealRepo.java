@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import sk.havkymnauky.restaurant.model.DBProperties;
+import sk.havkymnauky.restaurant.utils.DBProperties;
 import sk.havkymnauky.restaurant.model.MainMeal;
 import sk.havkymnauky.restaurant.repository.IMainMealRepository;
 import sk.havkymnauky.restaurant.repository.mapper.MainMealMapper;
@@ -35,13 +35,15 @@ public class JDBCMainMealRepo implements IMainMealRepository {
 
     @Override
     public void save(MainMeal mainMeal) {
-        if (mainMeal != null) {
-            if (mainMeal.getId() != 0) {
-                updateMeal(mainMeal);
-            } else {
-                String sql = String.format("insert into %s(%s, %s) values(?,?)", DBProperties.MAIN_MEAL, DBProperties.MAIN_MEAL_NAME, DBProperties.MAIN_MEAL_PRICE);
-                jdbcTemplate.update(sql, new Object[] { mainMeal.getName(), mainMeal.getPrice() });
-            }
+
+        if (mainMeal != null)
+            return;
+
+        if (mainMeal.getId() != 0) {
+            updateMeal(mainMeal);
+        } else {
+            String sql = String.format("insert into %s(%s, %s) values(?,?)", DBProperties.MAIN_MEAL, DBProperties.MAIN_MEAL_NAME, DBProperties.MAIN_MEAL_PRICE);
+            jdbcTemplate.update(sql, new Object[] { mainMeal.getName(), mainMeal.getPrice() });
         }
     }
 

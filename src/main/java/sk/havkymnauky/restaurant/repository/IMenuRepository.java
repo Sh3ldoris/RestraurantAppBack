@@ -1,17 +1,15 @@
 package sk.havkymnauky.restaurant.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import sk.havkymnauky.restaurant.model.Menu;
 
 import java.util.List;
 
-@Repository
-public interface IMenuRepository extends JpaRepository<Menu, Long> {
+public interface IMenuRepository{
 
-    /**
-     * @return last Menu record in database
-     */
-    Menu findTopByOrderByMenuDateDesc();
-    //List<Menu> findAllBy
+    List<Menu> findAll();
+    Menu findById(long id);
+    Menu findCurrent();
+    void saveMenu(Menu menu);
+    void deleteMenu(long id);
 }

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import sk.havkymnauky.restaurant.model.DBProperties;
+import sk.havkymnauky.restaurant.utils.DBProperties;
 import sk.havkymnauky.restaurant.model.Soup;
 import sk.havkymnauky.restaurant.repository.ISoupRepository;
 import sk.havkymnauky.restaurant.repository.mapper.SoupMapper;
@@ -16,19 +16,19 @@ public class JDBCSoupRepo implements ISoupRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    private RowMapper<Soup> mainMealMapper = new SoupMapper();
+    private RowMapper<Soup> soupMapper = new SoupMapper();
 
     @Override
     public List<Soup> findAll() {
         String sql = "select * from " + DBProperties.SOUP;
-        List<Soup> soups = jdbcTemplate.query(sql, mainMealMapper);
+        List<Soup> soups = jdbcTemplate.query(sql, soupMapper);
         return soups;
     }
 
     @Override
     public Soup findById(long id) {
         String sql = String.format("select * from %s where %s=?", DBProperties.SOUP, DBProperties.SOUP_ID);
-        List<Soup> soups = jdbcTemplate.query(sql, mainMealMapper, new Object[] { id });
+        List<Soup> soups = jdbcTemplate.query(sql, soupMapper, new Object[] { id });
         return soups.get(0);
     }
 

@@ -10,7 +10,7 @@ public interface IMenuService {
 
     List<Menu> getAllMenu();
     Menu getCurrentMenu();
-    Menu saveMenu(Menu newMenu) throws RestaurantFault;
-    Menu updateMenu(Menu menuToUpdate);
+    void saveMenu(Menu newMenu) throws RestaurantFault;
+    void updateMenu(Menu menuToUpdate);
     void deleteMenu(long id) throws RestaurantFault;
 }

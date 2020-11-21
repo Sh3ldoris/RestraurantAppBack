@@ -1,7 +1,7 @@
 package sk.havkymnauky.restaurant.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import sk.havkymnauky.restaurant.model.DBProperties;
+import sk.havkymnauky.restaurant.utils.DBProperties;
 import sk.havkymnauky.restaurant.model.MainMeal;
 
 import java.sql.ResultSet;

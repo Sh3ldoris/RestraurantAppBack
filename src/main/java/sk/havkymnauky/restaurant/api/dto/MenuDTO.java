@@ -1,14 +1,15 @@
 package sk.havkymnauky.restaurant.api.dto;
 
+import sk.havkymnauky.restaurant.model.MainMeal;
 import sk.havkymnauky.restaurant.model.Soup;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 public class MenuDTO {
 
     public long id;
     public Date menuDate;
-    public Set<Soup> soups;
+    public List<Soup> soups;
+    public List<MainMeal> mainMeals;
 }

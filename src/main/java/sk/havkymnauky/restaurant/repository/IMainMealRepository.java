@@ -7,7 +7,6 @@ import sk.havkymnauky.restaurant.model.MainMeal;
 import java.util.List;
 
 
-@Repository
 public interface IMainMealRepository {
     List<MainMeal> findAll();
     MainMeal findById(long id);

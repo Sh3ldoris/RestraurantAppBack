@@ -1,60 +1,55 @@
 package sk.havkymnauky.restaurant.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
+import java.util.*;
 
-import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-@Entity
-@Table( name = DBProperties.MENU)
-@JsonIgnoreProperties( value = "soups")
 public class Menu {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = DBProperties.MENU_ID )
     private long id;
-
-    @Column( name = DBProperties.MENU_DATE )
-    @NonNull
     private Date menuDate;
+    private List<Soup> soups = new ArrayList<>();
+    private List<MainMeal> mainMeals = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = DBProperties.MENU_SOUP,
-            joinColumns = { @JoinColumn(name = DBProperties.MENU_ID) },
-            inverseJoinColumns = { @JoinColumn(name = DBProperties.SOUP_ID) }
-    )
-    private Set<Soup> soups = new HashSet<>();
-
-    public Menu(@NonNull Date menuDate) {
+    public Menu(Date menuDate) {
         this.menuDate = menuDate;
     }
 
-    public Menu() {
+    public Menu(long id, Date menuDate, List<Soup> soups, List<MainMeal> mainMeals) {
+        this.id = id;
+        this.menuDate = menuDate;
+        this.soups = soups;
+        this.mainMeals = mainMeals;
+    }
+
+    public Menu(long id, Date menuDate) {
+        this.id = id;
+        this.menuDate = menuDate;
+    }
+
+    public Date getMenuDate() {
+        return menuDate;
+    }
+
+    public void setMenuDate(Date menuDate) {
+        this.menuDate = menuDate;
+    }
+
+    public List<MainMeal> getMainMeals() {
+        return mainMeals;
+    }
+
+    public void setMainMeals(List<MainMeal> mainMeals) {
+        this.mainMeals = mainMeals;
     }
 
     public long getId() {
         return id;
     }
 
-    public Set<Soup> getSoups() {
+    public List<Soup> getSoups() {
         return soups;
     }
 
-    public void setSoups(Set<Soup> menuSoup) {
+    public void setSoups(List<Soup> menuSoup) {
         this.soups = menuSoup;
     }
 

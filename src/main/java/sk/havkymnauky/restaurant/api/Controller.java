@@ -8,6 +8,7 @@ import sk.havkymnauky.restaurant.api.dto.SoupDTO;
 import sk.havkymnauky.restaurant.model.MainMeal;
 import sk.havkymnauky.restaurant.model.Menu;
 import sk.havkymnauky.restaurant.model.Soup;
+import sk.havkymnauky.restaurant.repository.IMenuRepository;
 import sk.havkymnauky.restaurant.service.IMainMealService;
 import sk.havkymnauky.restaurant.service.IMenuService;
 import sk.havkymnauky.restaurant.service.ISoupService;
@@ -22,12 +23,14 @@ public class Controller {
     private final IMenuService menuService;
     private final ISoupService soupService;
     private final ModelMapper modelMapper;
+    private final IMenuRepository menuRepository;
 
-    public Controller(IMainMealService mainMealService, IMenuService menuService, ISoupService soupService, ModelMapper modelMapper) {
+    public Controller(IMainMealService mainMealService, IMenuService menuService, ISoupService soupService, ModelMapper modelMapper, IMenuRepository menuRepository) {
         this.mainMealService = mainMealService;
         this.menuService = menuService;
         this.soupService = soupService;
         this.modelMapper = modelMapper;
+        this.menuRepository = menuRepository;
     }
 
     @GetMapping("/getAllMeals")
@@ -51,6 +54,20 @@ public class Controller {
     @PostMapping("/deleteMeal{id}")
     public void deleteMeal(@PathVariable("id") long id) {
         mainMealService.deleteMeal(id);
+    }
+
+    @GetMapping("/getAllMenu")
+    public List<MenuDTO> getAllMenu() {
+        return menuRepository
+                .findAll()
+                .stream()
+                .map(menu -> modelMapper.map(menu, MenuDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/getCurrent")
+    public MenuDTO getCurrent() {
+        return modelMapper.map(menuRepository.findCurrent(), MenuDTO.class);
     }
 
     @GetMapping("/soupTest")

@@ -1,4 +1,4 @@
-package sk.havkymnauky.restaurant.model;
+package sk.havkymnauky.restaurant.utils;
 
 public class DBProperties {
 
@@ -17,4 +17,5 @@ public class DBProperties {
     public static final String MENU_DATE = "menu_date";
 
     public static final String MENU_SOUP = "menu_soup";
+    public static final String MENU_MAIN_MEAL = "menu_main_meal";
 }

@@ -24,34 +24,28 @@ public class MenuService implements IMenuService {
 
     @Override
     public Menu getCurrentMenu() {
-        return menuRepository.findTopByOrderByMenuDateDesc();
+        return menuRepository.findCurrent();
     }
 
     @Override
-    public Menu saveMenu(Menu newMenu) throws RestaurantFault {
+    public void saveMenu(Menu newMenu) throws RestaurantFault {
+        //TODO: dont save menu with same menu date
 
         if (newMenu.getDate() == null) {
+            //TODO: ilegal argument ex
             throw new RestaurantFault("Nové menu je bez dátumu!");
-        } else {
-            Menu added = menuRepository.save(newMenu);
-            if ( added == null)
-                throw new RestaurantFault("Pri ukladaní došlo ku chybe!");
-            return added;
         }
+        menuRepository.saveMenu(newMenu);
     }
 
     @Override
-    public Menu updateMenu(Menu menuToUpdate) {
+    public void updateMenu(Menu menuToUpdate) {
         //TODO: Get done some checking
-        return menuRepository.save(menuToUpdate);
+        menuRepository.saveMenu(menuToUpdate);
     }
 
     @Override
     public void deleteMenu(long id) throws RestaurantFault {
-        if (menuRepository.findById(id) != null) {
-            menuRepository.deleteById(id);
-        } else {
-            throw new RestaurantFault("Menu nie je možné vymazať!");
-        }
+        menuRepository.deleteMenu(id);
     }
 }
