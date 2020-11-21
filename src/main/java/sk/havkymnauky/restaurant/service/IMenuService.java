@@ -12,5 +12,5 @@ public interface IMenuService {
     Menu getCurrent();
     void saveMenu(Menu newMenu) throws RestaurantFault;
     void updateMenu(Menu menuToUpdate);
-    void deleteMenu(long id) throws RestaurantFault;
+    void deleteMenu(long id);
 }

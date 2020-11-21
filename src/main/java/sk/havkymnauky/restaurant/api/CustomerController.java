@@ -1,5 +1,6 @@
 package sk.havkymnauky.restaurant.api;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping( "/getCurrentMenu" )
+    @Operation(summary = "Get menu with current date", description = "Method returns menu which has the latest date")
     public MenuDTO getCurrentMenu() {
         return modelMapper.map(menuService.getCurrent(), MenuDTO.class);
     }

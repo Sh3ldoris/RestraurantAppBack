@@ -18,9 +18,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+//@RestController
 public class Controller {
-
+/*
     private final IMainMealService mainMealService;
     private final IMenuService menuService;
     private final ISoupService soupService;
@@ -101,5 +101,5 @@ public class Controller {
         return soups.stream()
                 .map(soup -> modelMapper.map(soup, SoupDTO.class))
                 .collect(Collectors.toList());
-    }
+    }*/
 }
