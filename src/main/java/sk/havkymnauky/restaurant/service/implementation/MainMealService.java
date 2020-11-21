@@ -10,7 +10,7 @@ import sk.havkymnauky.restaurant.service.IMainMealService;
 import java.util.List;
 
 @Service
-public class MealMealService implements IMainMealService {
+public class MainMealService implements IMainMealService {
 
     @Autowired
     @Qualifier("JDBCPostgresqlMainMealRepo")

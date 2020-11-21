@@ -9,9 +9,10 @@ import sk.havkymnauky.restaurant.model.*;
 import sk.havkymnauky.restaurant.repository.IMenuRepository;
 import sk.havkymnauky.restaurant.repository.mapper.*;
 
+import java.util.Date;
 import java.util.List;
 
-@Repository
+@Repository("JDBCMenuRepo")
 public class JDBCMenuRepo implements IMenuRepository {
 
     @Autowired
@@ -35,7 +36,7 @@ public class JDBCMenuRepo implements IMenuRepository {
 
     @Override
     public Menu findById(long id) {
-        String sql = String.format("select * from $s where id=?", DBProperties.MENU);
+        String sql = String.format("select * from %s where %s=?", DBProperties.MENU, DBProperties.MENU_ID);
         List<Menu> list = jdbcTemplate.query(sql, menuRowMapper, new Object[] { id });
 
         if (list.size() == 0)
@@ -76,7 +77,7 @@ public class JDBCMenuRepo implements IMenuRepository {
 
     @Override
     public void saveMenu(Menu menu) {
-        if (menu != null)
+        if (menu == null)
             return;
 
         if (menu.getId() != 0) {
@@ -84,6 +85,10 @@ public class JDBCMenuRepo implements IMenuRepository {
         } else {
             String sql = String.format("insert into %s(%s) values(?)", DBProperties.MENU, DBProperties.MENU_DATE);
             jdbcTemplate.update(sql, new Object[] { menu.getDate() });
+
+            //Set new ID that is also in DB
+            menu.setId(this.findByDate(menu.getDate()).getId());
+
             saveSoupsToMenu(menu);
             saveMainMealsToMenu(menu);
         }
@@ -96,6 +101,13 @@ public class JDBCMenuRepo implements IMenuRepository {
         deleteAllMainMealsInMenu(id);
         String sql = String.format("delete from %s where %s=?", DBProperties.MENU, DBProperties.MENU_ID);
         jdbcTemplate.update(sql, new Object[] { id });
+    }
+
+    @Override
+    public Menu findByDate(Date date) {
+        String sql = String.format("SELECT * from %s where %s=?", DBProperties.MENU, DBProperties.MENU_DATE);
+        List<Menu> founded = jdbcTemplate.query(sql, menuRowMapper, new Object[] { date });
+        return founded.size() != 0 ? founded.get(0) : null;
     }
 
     private void updateMenu(Menu menu) {
@@ -151,7 +163,7 @@ public class JDBCMenuRepo implements IMenuRepository {
         if (menu.getMainMeals().size() == 0)
             return;
 
-        String sql = String.format("insert  into %s values (?,?)", DBProperties.MENU_MAIN_MEAL);
+        String sql = String.format("insert into %s values (?,?)", DBProperties.MENU_MAIN_MEAL);
         for (MainMeal meal : menu.getMainMeals()) {
             jdbcTemplate.update(sql, new Object[] {meal.getId(), menu.getId()});
         }

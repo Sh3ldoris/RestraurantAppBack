@@ -21,6 +21,6 @@ public class CustomerController {
 
     @GetMapping( "/getCurrentMenu" )
     public MenuDTO getCurrentMenu() {
-        return modelMapper.map(menuService.getCurrentMenu(), MenuDTO.class);
+        return modelMapper.map(menuService.getCurrent(), MenuDTO.class);
     }
 }

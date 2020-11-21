@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IMenuService {
 
-    List<Menu> getAllMenu();
-    Menu getCurrentMenu();
+    List<Menu> getAll();
+    Menu getCurrent();
     void saveMenu(Menu newMenu) throws RestaurantFault;
     void updateMenu(Menu menuToUpdate);
     void deleteMenu(long id) throws RestaurantFault;

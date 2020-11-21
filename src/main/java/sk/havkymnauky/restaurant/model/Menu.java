@@ -25,6 +25,9 @@ public class Menu {
         this.menuDate = menuDate;
     }
 
+    public Menu() {
+    }
+
     public Date getMenuDate() {
         return menuDate;
     }

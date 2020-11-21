@@ -1,5 +1,7 @@
 package sk.havkymnauky.restaurant.service.implementation;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import sk.havkymnauky.restaurant.error.RestaurantFault;
 import sk.havkymnauky.restaurant.model.Menu;
@@ -11,6 +13,8 @@ import java.util.List;
 @Service
 public class MenuService implements IMenuService {
 
+    @Autowired
+    @Qualifier("JDBCMenuRepo")
     private IMenuRepository menuRepository;
 
     public MenuService(IMenuRepository menuRepository) {
@@ -18,34 +22,34 @@ public class MenuService implements IMenuService {
     }
 
     @Override
-    public List<Menu> getAllMenu() {
+    public List<Menu> getAll() {
         return menuRepository.findAll();
     }
 
     @Override
-    public Menu getCurrentMenu() {
+    public Menu getCurrent() {
         return menuRepository.findCurrent();
     }
 
     @Override
     public void saveMenu(Menu newMenu) throws RestaurantFault {
-        //TODO: dont save menu with same menu date
-
         if (newMenu.getDate() == null) {
-            //TODO: ilegal argument ex
-            throw new RestaurantFault("Nové menu je bez dátumu!");
+            throw new RestaurantFault("New menu is missing date!");
         }
+
+        if (menuRepository.findByDate(newMenu.getDate()) != null)
+            throw new RestaurantFault("Menu with this date already exists!");
+
         menuRepository.saveMenu(newMenu);
     }
 
     @Override
     public void updateMenu(Menu menuToUpdate) {
-        //TODO: Get done some checking
         menuRepository.saveMenu(menuToUpdate);
     }
 
     @Override
-    public void deleteMenu(long id) throws RestaurantFault {
+    public void deleteMenu(long id) {
         menuRepository.deleteMenu(id);
     }
 }

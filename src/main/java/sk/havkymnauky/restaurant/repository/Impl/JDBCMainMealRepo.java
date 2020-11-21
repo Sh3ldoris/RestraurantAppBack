@@ -23,7 +23,6 @@ public class JDBCMainMealRepo implements IMainMealRepository {
         String sql = "select * from " + DBProperties.MAIN_MEAL;
         List<MainMeal> meals = jdbcTemplate.query(sql, mainMealMapper);
         return meals;
-
     }
 
     @Override

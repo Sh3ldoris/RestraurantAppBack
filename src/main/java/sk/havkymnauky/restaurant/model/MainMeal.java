@@ -12,6 +12,9 @@ public class MainMeal {
         this.price = price;
     }
 
+    public MainMeal() {
+    }
+
     public long getId() {
         return id;
     }
