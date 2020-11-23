@@ -1,4 +1,4 @@
-package sk.havkymnauky.restaurant.api.dto;
+package sk.havkymnauky.restaurant.model.dto;
 
 import sk.havkymnauky.restaurant.model.MainMeal;
 import sk.havkymnauky.restaurant.model.Soup;

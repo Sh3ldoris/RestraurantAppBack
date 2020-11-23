@@ -1,22 +1,4 @@
-package sk.havkymnauky.restaurant.api;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.*;
-import sk.havkymnauky.restaurant.api.dto.MainMealDTO;
-import sk.havkymnauky.restaurant.api.dto.MenuDTO;
-import sk.havkymnauky.restaurant.api.dto.SoupDTO;
-import sk.havkymnauky.restaurant.error.RestaurantFault;
-import sk.havkymnauky.restaurant.model.MainMeal;
-import sk.havkymnauky.restaurant.model.Menu;
-import sk.havkymnauky.restaurant.model.Soup;
-import sk.havkymnauky.restaurant.repository.IMenuRepository;
-import sk.havkymnauky.restaurant.service.IMainMealService;
-import sk.havkymnauky.restaurant.service.IMenuService;
-import sk.havkymnauky.restaurant.service.ISoupService;
-
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+package sk.havkymnauky.restaurant.api.impl;
 
 //@RestController
 public class Controller {

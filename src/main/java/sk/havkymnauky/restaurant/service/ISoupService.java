@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ISoupService {
 
-    List<Soup> getAllSoups();
-    Soup getSoupByID(long id);
-    void saveNewSoup(Soup newSoup);
+    List<Soup> getAll();
+    Soup getByID(long id);
+    void saveSoup(Soup newSoup);
     void deleteSoup(long id);
 }

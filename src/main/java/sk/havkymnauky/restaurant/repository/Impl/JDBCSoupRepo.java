@@ -34,13 +34,16 @@ public class JDBCSoupRepo implements ISoupRepository {
 
     @Override
     public void save(Soup soup) {
-        if (soup != null) {
-            if (soup.getID() != 0) {
-                updateSoup(soup);
-            } else {
-                String sql = String.format("insert into %s(%s, %s) values(?,?)", DBProperties.SOUP, DBProperties.SOUP_NAME, DBProperties.SOUP_PRICE);
-                jdbcTemplate.update(sql, new Object[] { soup.getName(), soup.getPrice() });
-            }
+
+        if (soup != null)
+            return;
+
+        if (soup.getID() != 0) {
+            updateSoup(soup);
+        } else {
+            String sql = String.format("insert into %s(%s, %s) values(?,?)", DBProperties.SOUP, DBProperties.SOUP_NAME, DBProperties.SOUP_PRICE);
+            jdbcTemplate.update(sql, new Object[] { soup.getName(), soup.getPrice() });
+
         }
     }
 

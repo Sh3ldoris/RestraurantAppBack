@@ -35,7 +35,7 @@ public class JDBCMainMealRepo implements IMainMealRepository {
     @Override
     public void save(MainMeal mainMeal) {
 
-        if (mainMeal != null)
+        if (mainMeal == null)
             return;
 
         if (mainMeal.getId() != 0) {

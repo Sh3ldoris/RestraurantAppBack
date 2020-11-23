@@ -18,17 +18,17 @@ public class SoupService implements ISoupService {
     private ISoupRepository soupRepository;
 
     @Override
-    public List<Soup> getAllSoups() {
+    public List<Soup> getAll() {
         return this.soupRepository.findAll();
     }
 
     @Override
-    public Soup getSoupByID(long id) {
+    public Soup getByID(long id) {
         return soupRepository.findById(id);
     }
 
     @Override
-    public void saveNewSoup(Soup newSoup) {
+    public void saveSoup(Soup newSoup) {
         soupRepository.save(newSoup);
     }
 

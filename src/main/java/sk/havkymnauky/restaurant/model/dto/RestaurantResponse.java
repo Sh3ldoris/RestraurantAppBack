@@ -1,4 +1,4 @@
-package sk.havkymnauky.restaurant.api.dto;
+package sk.havkymnauky.restaurant.model.dto;
 
 public class RestaurantResponse {
 

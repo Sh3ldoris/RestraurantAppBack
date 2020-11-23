@@ -37,7 +37,7 @@ public class MenuService implements IMenuService {
             throw new RestaurantFault("New menu is missing date!");
         }
 
-        if (menuRepository.findByDate(newMenu.getDate()) != null)
+        if (menuRepository.findByDate(newMenu.getDate()) != null && newMenu.getId() == 0)
             throw new RestaurantFault("Menu with this date already exists!");
 
         menuRepository.saveMenu(newMenu);

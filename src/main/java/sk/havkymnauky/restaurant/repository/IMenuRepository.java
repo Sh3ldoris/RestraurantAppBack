@@ -1,6 +1,5 @@
 package sk.havkymnauky.restaurant.repository;
 
-import org.springframework.stereotype.Repository;
 import sk.havkymnauky.restaurant.model.Menu;
 
 import java.util.Date;
