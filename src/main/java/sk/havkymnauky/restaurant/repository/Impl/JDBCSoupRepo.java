@@ -35,7 +35,7 @@ public class JDBCSoupRepo implements ISoupRepository {
     @Override
     public void save(Soup soup) {
 
-        if (soup != null)
+        if (soup == null)
             return;
 
         if (soup.getID() != 0) {

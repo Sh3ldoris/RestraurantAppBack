@@ -1,9 +1,6 @@
 package sk.havkymnauky.restaurant.api.impl;
 
-import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sk.havkymnauky.restaurant.api.ICustomerController;
 import sk.havkymnauky.restaurant.model.dto.MenuDTO;
