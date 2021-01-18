@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sk.havkymnauky.restaurant.model.dto.MenuDTO;
 
-@RequestMapping( "/public" )
+@RequestMapping( "api/public" )
 public interface ICustomerController {
 
     @GetMapping("/getCurrentMenu")

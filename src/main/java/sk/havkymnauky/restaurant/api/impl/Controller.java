@@ -1,8 +1,27 @@
 package sk.havkymnauky.restaurant.api.impl;
 
-//@RestController
+import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import sk.havkymnauky.restaurant.error.RestaurantFault;
+import sk.havkymnauky.restaurant.model.MainMeal;
+import sk.havkymnauky.restaurant.model.Menu;
+import sk.havkymnauky.restaurant.model.Soup;
+import sk.havkymnauky.restaurant.model.dto.MainMealDTO;
+import sk.havkymnauky.restaurant.model.dto.MenuDTO;
+import sk.havkymnauky.restaurant.model.dto.SoupDTO;
+import sk.havkymnauky.restaurant.repository.IMenuRepository;
+import sk.havkymnauky.restaurant.service.IMainMealService;
+import sk.havkymnauky.restaurant.service.IMenuService;
+import sk.havkymnauky.restaurant.service.ISoupService;
+
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
 public class Controller {
-/*
+
     private final IMainMealService mainMealService;
     private final IMenuService menuService;
     private final ISoupService soupService;
@@ -78,10 +97,20 @@ public class Controller {
     public List<SoupDTO> getRq() {
 
         List<Menu> menuL = menuService.getAll();
-        List<Soup> soups = soupService.getAllSoups();
+        List<Soup> soups = soupService.getAll();
 
         return soups.stream()
                 .map(soup -> modelMapper.map(soup, SoupDTO.class))
                 .collect(Collectors.toList());
-    }*/
+    }
+
+    @GetMapping("/test")
+    public void test() {
+        final String uri = "http://localhost:8080/secured/getAllMainMeals";
+
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri, String.class);
+
+        System.out.println(result);
+    }
 }

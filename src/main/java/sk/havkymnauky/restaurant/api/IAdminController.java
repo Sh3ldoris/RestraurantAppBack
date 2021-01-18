@@ -17,7 +17,7 @@ import sk.havkymnauky.restaurant.error.RestaurantFault;
 
 import java.util.List;
 
-@RequestMapping( "/secured" )
+@RequestMapping( "api/secured" )
 @ApiResponses( value =
     @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(schema = @Schema(implementation = RestaurantFault.class)))
 )
