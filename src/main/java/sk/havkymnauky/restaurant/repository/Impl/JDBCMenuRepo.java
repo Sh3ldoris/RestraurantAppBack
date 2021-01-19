@@ -23,7 +23,7 @@ public class JDBCMenuRepo implements IMenuRepository {
 
     @Override
     public List<Menu> findAll() {
-        String sql = "select * from " + DBProperties.MENU;
+        String sql = "select * from " + DBProperties.MENU + " order by " + DBProperties.MENU_DATE + " desc";
         List<Menu> founded = jdbcTemplate.query(sql, menuRowMapper);
 
         for (int i = 0; i < founded.size(); i++) {
@@ -50,7 +50,7 @@ public class JDBCMenuRepo implements IMenuRepository {
 
     @Override
     public Menu findCurrent() {
-        String sql = String.format(
+        /*String sql = String.format(
                 "select m1.%s, m1.%s from %s m1\n" +
                                         "join (\n" +
                                             "SELECT max(%s) as maxdate\n" +
@@ -63,7 +63,8 @@ public class JDBCMenuRepo implements IMenuRepository {
                 DBProperties.MENU_DATE,
                 DBProperties.MENU,
                 DBProperties.MENU_DATE
-                );
+                );*/
+        String sql = String.format("select * from %s where %s = current_date;", DBProperties.MENU, DBProperties.MENU_DATE);
         List<Menu> list = jdbcTemplate.query(sql, menuRowMapper);
 
         if (list.size() == 0)

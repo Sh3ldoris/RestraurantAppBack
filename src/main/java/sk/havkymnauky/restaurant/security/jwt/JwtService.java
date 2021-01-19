@@ -14,7 +14,7 @@ public class JwtService {
 
     private static final Logger LOGGER = Logger.getLogger( JwtService.class.getName() );
 
-    private final int jwtExpiration = 120000;
+    private final int jwtExpiration = 3600000;
     private final String jwtKey = "secret";
 
     public String generateJwtToken(Authentication authentication) {

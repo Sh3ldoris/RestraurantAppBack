@@ -54,11 +54,11 @@ public class AuthController implements IAuthController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User user =  userRepository.getByUsername(userDetails.getUsername());
 
-        try {
-            TimeUnit.SECONDS.sleep(2);
+        /*try {
+            TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {
             System.err.println(e);
-        }
+        }*/
 
         return new ResponseEntity<JwtResponse>(new JwtResponse(jwt, userDetails.getUsername(), "admin"), HttpStatus.OK);
     }

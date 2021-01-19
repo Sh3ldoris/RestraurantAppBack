@@ -3,6 +3,7 @@ package sk.havkymnauky.restaurant.api.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.RestController;
 import sk.havkymnauky.restaurant.api.ICustomerController;
+import sk.havkymnauky.restaurant.model.Menu;
 import sk.havkymnauky.restaurant.model.dto.MenuDTO;
 import sk.havkymnauky.restaurant.service.IMenuService;
 
@@ -20,6 +21,9 @@ public class CustomerController implements ICustomerController {
 
     @Override
     public MenuDTO getCurrentMenu() {
-        return modelMapper.map(menuService.getCurrent(), MenuDTO.class);
+        Menu founded = menuService.getCurrent();
+        if (founded == null)
+            return new MenuDTO();
+        return modelMapper.map(founded, MenuDTO.class);
     }
 }

@@ -28,7 +28,10 @@ public class MenuService implements IMenuService {
 
     @Override
     public Menu getCurrent() {
-        return menuRepository.findCurrent();
+        Menu founded = menuRepository.findCurrent();
+        if (founded == null)
+            return null;
+        return founded;
     }
 
     @Override
